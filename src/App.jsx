@@ -209,18 +209,19 @@ function Hero() {
     <section
       ref={ref}
       className="
-        relative
-        aspect-[16/9]
-        md:h-screen
-        flex
-        items-center
-        justify-center
-        text-center
-        overflow-hidden
-        bg-black
-      "
+       relative
+       h-[60vh]
+      sm:h-[70vh]
+      md:h-[85vh]
+      lg:h-screen
+      flex
+      items-center
+      justify-center
+      text-center
+      overflow-hidden
+     bg-black"
     >
-      {/* CARROSSEL COM PARALLAX */}
+      {/* CARROSSEL COM EFEITO PARALLAX */}
       <motion.div
         style={{ y }}
         className="absolute inset-0 opacity-70"
@@ -228,7 +229,7 @@ function Hero() {
         <Carrosel />
       </motion.div>
 
-      {/* OVERLAY ESCURO */}
+      {/* OVERLAY ESCURO PARA MELHOR LEITURA */}
       <div className="absolute inset-0 bg-black/50 md:bg-black/40" />
 
       {/* CONTEÚDO */}
@@ -769,7 +770,6 @@ function Footer() {
 export default function App() {
   const [user, setUser] = useState(null);
 
-  // Verifica se já existe usuário salvo
   useEffect(() => {
     const savedUser = localStorage.getItem("vortexUser");
     if (savedUser) {
@@ -778,22 +778,44 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <div className="min-h-screen w-full overflow-x-hidden bg-black text-white">
+
       <BackgroundMusic />
+
       <Navbar />
-      <Hero />
-      <Collection />
-      <VideoShowcase />
 
-      {!user ? (
-        <Auth onLogin={setUser} />
-      ) : (
-        <Cart user={user} setUser={setUser} />
-      )}
+      <main className="w-full">
 
-      <Performance />
-      <Contact />
+        <Hero />
+
+        <section className="px-4 sm:px-6 md:px-10 lg:px-16">
+          <Collection />
+        </section>
+
+        <section className="px-4 sm:px-6 md:px-10 lg:px-16">
+          <VideoShowcase />
+        </section>
+
+        <section className="px-4 sm:px-6 md:px-10 lg:px-16">
+          {!user ? (
+            <Auth onLogin={setUser} />
+          ) : (
+            <Cart user={user} setUser={setUser} />
+          )}
+        </section>
+
+        <section className="px-4 sm:px-6 md:px-10 lg:px-16">
+          <Performance />
+        </section>
+
+        <section className="px-4 sm:px-6 md:px-10 lg:px-16">
+          <Contact />
+        </section>
+
+      </main>
+
       <Footer />
-    </>
+
+    </div>
   );
 }
