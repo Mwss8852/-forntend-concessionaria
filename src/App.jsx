@@ -158,9 +158,17 @@ function Carrosel() {
           initial={{ opacity: 0 }}
           animate={{ opacity: index === current ? 1 : 0 }}
           transition={{ duration: 1 }}
-          className="absolute w-full h-full object-cover"
+          className="
+            absolute inset-0
+            w-full h-full
+            object-cover
+            object-center
+          "
         />
       ))}
+
+      {/* Overlay escuro para melhorar leitura no mobile */}
+      <div className="absolute inset-0 bg-black/40 md:bg-black/30" />
     </div>
   );
 }
