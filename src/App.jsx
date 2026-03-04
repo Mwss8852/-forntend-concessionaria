@@ -197,36 +197,54 @@ function Navbar() {
 // SEÇÃO HERO COM EFEITO DE SCROLL E SOM DE MOTOR
 function Hero() {
   const ref = useRef(null);
-  const engineRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
 
-  useEffect(() => {
-    engineRef.current = new Audio("hiphop.mp3");
-    engineRef.current.volume = 0.7;
-    engineRef.current.play().catch(() => { });
-  }, []);
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
 
   return (
     <section
       ref={ref}
-      className="h-screen relative flex items-center justify-center text-center overflow-hidden bg-black"
+      className="
+        relative
+        h-[65vh]
+        sm:h-[75vh]
+        md:h-screen
+        flex
+        items-center
+        justify-center
+        text-center
+        overflow-hidden
+        bg-black
+      "
     >
-      <motion.div style={{ y }} className="absolute inset-0 opacity-50">
+      {/* CARROSSEL COM EFEITO PARALLAX */}
+      <motion.div
+        style={{ y }}
+        className="absolute inset-0 opacity-70"
+      >
         <Carrosel />
       </motion.div>
 
+      {/* OVERLAY ESCURO PARA MELHOR LEITURA */}
+      <div className="absolute inset-0 bg-black/50 md:bg-black/40" />
+
+      {/* CONTEÚDO */}
       <div className="relative z-10 text-white max-w-4xl px-6">
         <motion.h1
-          initial={{ opacity: 0, y: 80 }}
+          initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2 }}
-          className="text-6xl md:text-8xl font-bold leading-tight"
+          transition={{ duration: 1 }}
+          className="
+            text-4xl
+            sm:text-6xl
+            md:text-8xl
+            font-bold
+            leading-tight
+          "
         >
           DRIVE THE FUTURE
         </motion.h1>
@@ -234,8 +252,14 @@ function Hero() {
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="mt-6 text-gray-300 text-lg"
+          transition={{ delay: 0.4 }}
+          className="
+            mt-4
+            sm:mt-6
+            text-sm
+            sm:text-lg
+            text-gray-300
+          "
         >
           Performance extrema. Luxo absoluto. Tecnologia incomparável.
         </motion.p>
@@ -243,7 +267,22 @@ function Hero() {
         <motion.a
           href="#collection"
           whileHover={{ scale: 1.05 }}
-          className="inline-block mt-10 bg-yellow-400 text-black px-10 py-4 rounded-full font-semibold tracking-wide"
+          whileTap={{ scale: 0.95 }}
+          className="
+            inline-block
+            mt-6
+            sm:mt-10
+            bg-yellow-400
+            text-black
+            px-6
+            sm:px-10
+            py-3
+            sm:py-4
+            rounded-full
+            font-semibold
+            tracking-wide
+            transition
+          "
         >
           Explore Collection
         </motion.a>
