@@ -210,8 +210,7 @@ function Hero() {
       ref={ref}
       className="
         relative
-        h-[65vh]
-        sm:h-[75vh]
+        aspect-[16/9]
         md:h-screen
         flex
         items-center
@@ -221,7 +220,7 @@ function Hero() {
         bg-black
       "
     >
-      {/* CARROSSEL COM EFEITO PARALLAX */}
+      {/* CARROSSEL COM PARALLAX */}
       <motion.div
         style={{ y }}
         className="absolute inset-0 opacity-70"
@@ -229,7 +228,7 @@ function Hero() {
         <Carrosel />
       </motion.div>
 
-      {/* OVERLAY ESCURO PARA MELHOR LEITURA */}
+      {/* OVERLAY ESCURO */}
       <div className="absolute inset-0 bg-black/50 md:bg-black/40" />
 
       {/* CONTEÚDO */}
